@@ -16,7 +16,7 @@ export default Posts
 
 export async function getStaticProps(){
 
-  const postsRes=await axios.get("http://localhost:1337/api/posts")
+  const postsRes=await axios.get(`${process.env.STRAPI_HOST}/api/posts`)
   return {
     props:{
       posts: postsRes.data,

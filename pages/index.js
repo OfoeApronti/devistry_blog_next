@@ -14,7 +14,7 @@ export default function Home({posts}) {
 
 
 export const getStaticProps = async (ctx) => {
-  const postsRes= await axios("http://localhost:1337/api/posts")
+  const postsRes= await axios(`${process.env.STRAPI_HOST}/api/posts`)
   
   return {
     props:{

@@ -17,7 +17,8 @@ const PostPage = ({post}) => {
 
 
 export const getStaticProps = async ({params}) => {
-  const postRes=await axios.get(`http://localhost:1337/api/posts/${params.id}`)
+  console.log("env", process.env.STRAPI_HOST)
+  const postRes=await axios.get(`${process.env.STRAPI_HOST}/api/posts/${params.id}`)
 
   return {
     props:{
@@ -27,7 +28,7 @@ export const getStaticProps = async ({params}) => {
 }
 
 export async function getStaticPaths(){
-  const postsRes=await axios.get("http://localhost:1337/api/posts")
+  const postsRes=await axios.get(`${process.env.STRAPI_HOST}/api/posts`)
   console.log(postsRes.data)
   const paths=postsRes.data.data.map((post)=>{
     return {params: {id: post.id.toString()}}
